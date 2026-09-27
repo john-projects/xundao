@@ -4,12 +4,14 @@
 [ext_resource type="Script" uid="uid://duimkajjrl7b0" path="res://scenes/unit/players/player.gd" id="2_xa7el"]
 [ext_resource type="Resource" uid="uid://ckl8xxcrmuxtq" path="res://resources/units/players/stats_player_well_rounded.tres" id="3_xa7el"]
 [ext_resource type="Script" uid="uid://dqr67s60lguok" path="res://scenes/unit/players/trail.gd" id="4_0kki1"]
+[ext_resource type="Texture2D" uid="uid://cproxhccob85g" path="res://assets/sprites/Players/Player_1.png" id="5_ht2l1"]
 
 [sub_resource type="Curve" id="Curve_m5j8w"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="PlayerWellRounded" unique_id=1745697924 instance=ExtResource("1_wkafa")]
+collision_mask = 2
 script = ExtResource("2_xa7el")
 stats = ExtResource("3_xa7el")
 
@@ -28,6 +30,7 @@ z_index = 1
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(827760262) index="2" unique_id=472262675]
 z_index = 1
+texture = ExtResource("5_ht2l1")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=2059454073]
 unique_name_in_owner = true

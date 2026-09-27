@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bfb25cpd7tenq"]
 
 [ext_resource type="Texture2D" uid="uid://devt2xbk78rej" path="res://assets/sprites/shadow.png" id="1_fvc8g"]
-[ext_resource type="Texture2D" uid="uid://cproxhccob85g" path="res://assets/sprites/Players/Player_1.png" id="2_vh40f"]
 
 [sub_resource type="Animation" id="Animation_fvc8g"]
 length = 0.001
@@ -271,7 +270,6 @@ texture = ExtResource("1_fvc8g")
 [node name="Sprite" type="Sprite2D" parent="Visuals" unique_id=472262675]
 unique_name_in_owner = true
 position = Vector2(0, -58)
-texture = ExtResource("2_vh40f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2059454073]
 
