@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dysf7xbbwiv4u"]
+
+[ext_resource type="Texture2D" uid="uid://cy4xfx762bxgb" path="res://assets/sprites/BG.png" id="1_8trdl"]
+[ext_resource type="Script" uid="uid://fdum1yot0fdu" path="res://scenes/arena/arena.gd" id="1_asdgj"]
+[ext_resource type="Texture2D" uid="uid://ov4fmsbglo55" path="res://assets/sprites/Map.png" id="2_5tue2"]
+[ext_resource type="PackedScene" uid="uid://xrgsu4ju3us0" path="res://scenes/unit/players/player_well_rounded.tscn" id="3_5tue2"]
+[ext_resource type="Script" uid="uid://ctwpag0nd6uv6" path="res://scenes/arena/camera_2d.gd" id="4_aj7ud"]
+
+[node name="Arena" type="Node2D" unique_id=1131578198 node_paths=PackedStringArray("player")]
+script = ExtResource("1_asdgj")
+player = NodePath("PlayerWellRounded")
+
+[node name="BlackBG" type="Sprite2D" parent="." unique_id=821371906]
+scale = Vector2(2, 1)
+texture = ExtResource("1_8trdl")
+
+[node name="GrassBG" type="Sprite2D" parent="." unique_id=763250404]
+scale = Vector2(2, 2)
+texture = ExtResource("2_5tue2")
+
+[node name="PlayerWellRounded" parent="." unique_id=1745697924 instance=ExtResource("3_5tue2")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1444244465]
+script = ExtResource("4_aj7ud")

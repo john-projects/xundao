@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://xrgsu4ju3us0"]
+
+[ext_resource type="PackedScene" uid="uid://bfb25cpd7tenq" path="res://scenes/unit/unit.tscn" id="1_wkafa"]
+[ext_resource type="Script" uid="uid://duimkajjrl7b0" path="res://scenes/unit/players/player.gd" id="2_xa7el"]
+[ext_resource type="Resource" uid="uid://ckl8xxcrmuxtq" path="res://resources/units/players/stats_player_well_rounded.tres" id="3_xa7el"]
+[ext_resource type="Script" uid="uid://dqr67s60lguok" path="res://scenes/unit/players/trail.gd" id="4_0kki1"]
+
+[sub_resource type="Curve" id="Curve_m5j8w"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="PlayerWellRounded" unique_id=1745697924 instance=ExtResource("1_wkafa")]
+script = ExtResource("2_xa7el")
+stats = ExtResource("3_xa7el")
+
+[node name="Trail" type="Line2D" parent="Visuals" parent_id_path=PackedInt32Array(827760262) index="0" unique_id=377426161 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+top_level = true
+position = Vector2(-1, -25)
+points = PackedVector2Array(1, -8)
+width = 50.0
+width_curve = SubResource("Curve_m5j8w")
+script = ExtResource("4_0kki1")
+player = NodePath("../..")
+
+[node name="Shadow" parent="Visuals" parent_id_path=PackedInt32Array(827760262) index="1" unique_id=58820459]
+z_index = 1
+
+[node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(827760262) index="2" unique_id=472262675]
+z_index = 1
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=2059454073]
+unique_name_in_owner = true
+
+[node name="DashTimer" type="Timer" parent="." index="3" unique_id=555995924]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="." index="4" unique_id=1085152706]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="TrailTimer" type="Timer" parent="." index="5" unique_id=1216898838]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="TrailTimer" to="Visuals/Trail" method="_on_trail_timer_timeout"]
