@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bfb25cpd7tenq"]
 
+[ext_resource type="Script" uid="uid://usskv2oqisvo" path="res://scenes/unit/unit.gd" id="1_bhlit"]
 [ext_resource type="Texture2D" uid="uid://devt2xbk78rej" path="res://assets/sprites/shadow.png" id="1_fvc8g"]
+[ext_resource type="PackedScene" uid="uid://rstywhv2i8qi" path="res://scenes/component/hurtbox_component.tscn" id="2_fvc8g"]
+[ext_resource type="PackedScene" uid="uid://ntuql655ptmb" path="res://scenes/component/health_component.tscn" id="3_vh40f"]
 
 [sub_resource type="Animation" id="Animation_fvc8g"]
 length = 0.001
@@ -257,6 +260,7 @@ _data = {
 }
 
 [node name="Unit" type="Area2D" unique_id=2064501302]
+script = ExtResource("1_bhlit")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=827760262]
 unique_name_in_owner = true
@@ -276,3 +280,7 @@ position = Vector2(0, -58)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1162658213]
 libraries/ = SubResource("AnimationLibrary_0wuuu")
 autoplay = &"idle"
+
+[node name="HurtboxComponent" parent="." unique_id=963617926 instance=ExtResource("2_fvc8g")]
+
+[node name="HealthComponent" parent="." unique_id=161682250 instance=ExtResource("3_vh40f")]

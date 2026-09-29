@@ -10,9 +10,18 @@
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ht2l1"]
+radius = 4.1231055
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3rpdi"]
+radius = 31.0
+
 [node name="PlayerWellRounded" unique_id=1745697924 instance=ExtResource("1_wkafa")]
 collision_mask = 2
 script = ExtResource("2_xa7el")
+dash_duration = 0.5
+dash_speed_multi = 2.5
+dash_cooldown = 0.5
 stats = ExtResource("3_xa7el")
 
 [node name="Trail" type="Line2D" parent="Visuals" parent_id_path=PackedInt32Array(827760262) index="0" unique_id=377426161 node_paths=PackedStringArray("player")]
@@ -34,6 +43,9 @@ texture = ExtResource("5_ht2l1")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=2059454073]
 unique_name_in_owner = true
+z_index = 1
+position = Vector2(0, -30)
+shape = SubResource("CircleShape2D_ht2l1")
 
 [node name="DashTimer" type="Timer" parent="." index="3" unique_id=555995924]
 unique_name_in_owner = true
@@ -46,6 +58,15 @@ one_shot = true
 [node name="TrailTimer" type="Timer" parent="." index="5" unique_id=1216898838]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="HurtboxComponent" parent="." index="6" unique_id=963617926]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1329433841]
+z_index = 1
+position = Vector2(0, -30)
+shape = SubResource("CircleShape2D_3rpdi")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="TrailTimer" to="Visuals/Trail" method="_on_trail_timer_timeout"]

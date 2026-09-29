@@ -266,3 +266,6 @@ texture = ExtResource("2_t2hln")
 
 [node name="AnimationPlayer" parent="." index="2" unique_id=1162658213]
 libraries/ = SubResource("AnimationLibrary_0wuuu")
+
+[node name="HurtboxComponent" parent="." index="6" unique_id=963617926]
+metadata/_custom_type_script = "uid://c520vdq3ys6jq"
