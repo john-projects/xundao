@@ -284,3 +284,5 @@ autoplay = &"idle"
 [node name="HurtboxComponent" parent="." unique_id=963617926 instance=ExtResource("2_fvc8g")]
 
 [node name="HealthComponent" parent="." unique_id=161682250 instance=ExtResource("3_vh40f")]
+
+[connection signal="on_damaged" from="HurtboxComponent" to="." method="_on_hurtbox_component_on_damaged"]
