@@ -27,6 +27,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/stretch/scale=0.7
 
+[gui]
+
+theme/custom_font="uid://kfh6ooeul77g"
+
 [input]
 
 move_left={

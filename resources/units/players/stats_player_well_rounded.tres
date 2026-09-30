@@ -10,5 +10,7 @@ icon = ExtResource("1_6skj5")
 health = 15.0
 health_increase_per_wave = 0.0
 damage_increase_per_wave = 0.0
+luck = 5.0
+block_chance = 50.0
 gold_drop = 0
 metadata/_custom_type_script = "uid://j6ibt5vlkg3t"

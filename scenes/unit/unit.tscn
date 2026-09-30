@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://devt2xbk78rej" path="res://assets/sprites/shadow.png" id="1_fvc8g"]
 [ext_resource type="PackedScene" uid="uid://rstywhv2i8qi" path="res://scenes/component/hurtbox_component.tscn" id="2_fvc8g"]
 [ext_resource type="PackedScene" uid="uid://ntuql655ptmb" path="res://scenes/component/health_component.tscn" id="3_vh40f"]
+[ext_resource type="PackedScene" uid="uid://dkopp7w0ih6ui" path="res://scenes/ui/health_bar/health_bar.tscn" id="5_vgvef"]
 
 [sub_resource type="Animation" id="Animation_fvc8g"]
 length = 0.001
@@ -285,4 +286,16 @@ autoplay = &"idle"
 
 [node name="HealthComponent" parent="." unique_id=161682250 instance=ExtResource("3_vh40f")]
 
+[node name="HealthBar" parent="." unique_id=1374185052 instance=ExtResource("5_vgvef")]
+offset_left = -46.0
+offset_top = -90.0
+offset_right = 50.0
+offset_bottom = -70.0
+
+[node name="FlashTimer" type="Timer" parent="." unique_id=1857103157]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="on_damaged" from="HurtboxComponent" to="." method="_on_hurtbox_component_on_damaged"]
+[connection signal="on_health_changed" from="HealthComponent" to="HealthBar" method="_on_health_component_on_health_changed"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
