@@ -12,6 +12,9 @@ radius = 3.1622777
 [sub_resource type="CircleShape2D" id="CircleShape2D_3rpdi"]
 radius = 150.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pi0uk"]
+radius = 38.052597
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_bvwhp"]
 radius = 40.04997
 
@@ -36,6 +39,15 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" index="0" unique_id=1750516048]
 position = Vector2(0, -22)
 shape = SubResource("CircleShape2D_3rpdi")
+
+[node name="HurtboxComponent" parent="." index="4" unique_id=963617926]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=150634616]
+position = Vector2(0, -28)
+shape = SubResource("CircleShape2D_pi0uk")
+debug_color = Color(0.5908673, 0.40493748, 0.9384822, 0.41960785)
 
 [node name="HitboxComponent" parent="." index="5" unique_id=562222797 instance=ExtResource("5_e15k4")]
 collision_layer = 4
