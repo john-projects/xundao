@@ -6,6 +6,14 @@ signal on_create_damage_text(unit: Node2D, hitbox: HitboxComponent)
 const FLASH_MATERIAL = preload("uid://beabn3es4m4m7")
 const FLOATING_TEXT_SCENE = preload("uid://btdihrlsugqm0")
 
+enum UpgradeTier{
+	COMMON,
+	RARE,
+	EPIC,
+	LEGENDARY
+}
+
+
 var player: Player
 
 # Called when the node enters the scene tree for the first time.
