@@ -38,7 +38,6 @@ func heal(amount: float) -> void:
 
 func die() -> void:
 	owner.queue_free()
-	
 
 
 # Called when the node enters the scene tree for the first time.

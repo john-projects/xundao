@@ -24,7 +24,11 @@ func _ready() -> void:
 	dash_cooldown_timer.wait_time = dash_cooldown
 	
 	add_weapon(preload("uid://c412cvkmww8ch"))
-
+	add_weapon(preload("uid://v3qy6nqsa42h"))
+	add_weapon(preload("uid://cim67qebrn4lw"))
+	add_weapon(preload("uid://246kvelp4yr3"))
+	add_weapon(preload("uid://bx7d7mby7gkxw"))
+	add_weapon(preload("uid://o1pjlme2fu5o"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

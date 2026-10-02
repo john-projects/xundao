@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 	pass
 
 func execute_attack() -> void:
+	print("攻击")
 	weapon.is_attacking = true
 	var tween := create_tween()
 	var recoil_pos := Vector2(weapon.atk_start_pos.x - weapon.data.stats.recoil, weapon.atk_start_pos.y)

@@ -37,5 +37,17 @@ position = Vector2(-621, 225)
 flock_push = 30.0
 
 [node name="EnemyChaserSlow3" parent="." unique_id=30628623 instance=ExtResource("6_jx0ua")]
-position = Vector2(-390, -5)
+position = Vector2(-382, 32)
+flock_push = 30.0
+
+[node name="EnemyChaserSlow4" parent="." unique_id=462084255 instance=ExtResource("6_jx0ua")]
+position = Vector2(-246, -323)
+flock_push = 30.0
+
+[node name="EnemyChaserSlow5" parent="." unique_id=2080461848 instance=ExtResource("6_jx0ua")]
+position = Vector2(-805, -38)
+flock_push = 30.0
+
+[node name="EnemyChaserSlow6" parent="." unique_id=1125111268 instance=ExtResource("6_jx0ua")]
+position = Vector2(-293, 326)
 flock_push = 30.0
