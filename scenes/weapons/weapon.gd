@@ -3,7 +3,7 @@ class_name Weapon
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = %CollisionShape2D
-@onready var cooldown_timer: Timer = $ColldownTimer
+@onready var cooldown_timer: Timer = $CooldownTimer
 @onready var weapon_behavior: WeaponBehavior = $WeaponBehavior
 
 var data: ItemWeapon
@@ -58,13 +58,13 @@ func get_custom_rotation_to_target() -> float:
 	
 func get_rotation_to_target() -> float:
 	if targets.size() == 0:
-		return get_idel_ratation()
+		return get_idle_rotation()
 		
 	var rot := global_position.direction_to(closest_target.global_position).angle()
 	return rot
 	
 
-func get_idel_ratation() -> float:
+func get_idle_rotation() -> float:
 	if Global.player.is_facing_right():
 		return 0
 	else:

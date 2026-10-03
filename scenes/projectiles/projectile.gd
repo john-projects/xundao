@@ -20,5 +20,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 
-func _on_hitbix_component_on_hit_hurtbox(hurtbox: HurtboxComponent) -> void:
+func _on_hitbox_component_on_hit_hurtbox(hurtbox: HurtboxComponent) -> void:
 	queue_free()

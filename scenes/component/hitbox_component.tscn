@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vth6kdtgoe27" path="res://scenes/component/hitbox_component.gd" id="1_ncncx"]
 
-[node name="HitbixComponent" type="Area2D" unique_id=562222797]
+[node name="HitboxComponent" type="Area2D" unique_id=562222797]
 script = ExtResource("1_ncncx")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

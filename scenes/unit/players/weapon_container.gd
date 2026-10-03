@@ -1,5 +1,5 @@
 extends Node2D
-class_name WeaponCOntainer
+class_name WeaponContainer
 
 @onready var one: Node2D = $One
 @onready var two: Node2D = $Two

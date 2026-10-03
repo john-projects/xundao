@@ -9,7 +9,7 @@ class_name Player
 @onready var dash_cooldown_timer: Timer = %DashCooldownTimer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var trail: Trail = %Trail
-@onready var weapon_container: WeaponCOntainer = $WeaponContainer
+@onready var weapon_container: WeaponContainer = $WeaponContainer
 
 var current_weapons: Array[Weapon] = []
 var move_dir: Vector2
