@@ -23,13 +23,18 @@ func _ready() -> void:
 	dash_timer.wait_time = dash_duration
 	dash_cooldown_timer.wait_time = dash_cooldown
 	
-	add_weapon(preload("uid://c412cvkmww8ch"))
-	add_weapon(preload("uid://v3qy6nqsa42h"))
-	add_weapon(preload("uid://cim67qebrn4lw"))
-	add_weapon(preload("uid://246kvelp4yr3"))
-	add_weapon(preload("uid://bx7d7mby7gkxw"))
-	add_weapon(preload("uid://o1pjlme2fu5o"))
-
+	#add_weapon(preload("uid://c412cvkmww8ch"))
+	#add_weapon(preload("uid://v3qy6nqsa42h"))
+	#add_weapon(preload("uid://cim67qebrn4lw"))
+	#add_weapon(preload("uid://246kvelp4yr3"))
+	#add_weapon(preload("uid://bx7d7mby7gkxw"))
+	#add_weapon(preload("uid://o1pjlme2fu5o"))
+	add_weapon(preload("uid://cgsyn64p4dyq4"))
+	add_weapon(preload("uid://dh4ejm50kgsgv"))
+	add_weapon(preload("uid://c1s0vxtth2eay"))
+	add_weapon(preload("uid://cnvvspccvx3c8"))
+	add_weapon(preload("uid://dfd3lorxq2qj4"))
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
