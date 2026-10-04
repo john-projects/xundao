@@ -37,6 +37,8 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Global.game_paused:
+		return
 	move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
 	var current_velocity := move_dir * stats.speed

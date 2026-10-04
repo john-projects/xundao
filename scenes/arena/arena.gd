@@ -8,6 +8,10 @@ class_name Arena
 @export var critical_color: Color
 @export var hp_color: Color
 
+@onready var wave_index_label: Label = %WaveIndexLabel
+@onready var wave_time_label: Label = %WaveTimeLabel
+@onready var spawner: Spawner = $Spawner
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.player = player
@@ -18,7 +22,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Global.game_paused:
+		return
+	wave_index_label.text = spawner.get_wave_text()
+	wave_time_label.text = spawner.get_wave_timer_text()
 
 func create_floating_text(unit: Node2D) -> FloatingText:
 	var instance := Global.FLOATING_TEXT_SCENE.instantiate() as FloatingText

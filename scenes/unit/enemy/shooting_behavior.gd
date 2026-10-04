@@ -20,6 +20,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Global.game_paused:
+		return
 	if enemy == null:
 		return
 	if current_cooldown > 0:

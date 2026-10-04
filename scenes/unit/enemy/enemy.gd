@@ -17,6 +17,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Global.game_paused:
+		return
 	if not can_move:
 		return
 	
@@ -65,6 +67,11 @@ func reset_knockback() -> void:
 	knockback_dir = Vector2.ZERO
 	knockback_power = 0.0
 
+func destroy_enemy() -> void:
+	can_move = false
+	animation_player.play("die")
+	await animation_player.animation_finished
+	queue_free()
 
 func _on_knockback_timer_timeout() -> void:
 	reset_knockback()

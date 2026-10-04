@@ -8,6 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://bn6f6mhmwa4cn" path="res://scenes/unit/enemy/enemy_chaser_slow.tscn" id="6_jx0ua"]
 [ext_resource type="PackedScene" uid="uid://ndkmd7k4n1o3" path="res://scenes/unit/enemy/enemy_charger.tscn" id="7_u52cf"]
 [ext_resource type="PackedScene" uid="uid://cyi0lxep46xsn" path="res://scenes/unit/enemy/enemy_shooter.tscn" id="8_ii07k"]
+[ext_resource type="Script" uid="uid://bewu54ju6y8r3" path="res://scenes/arena/spawner.gd" id="9_6w4xk"]
+[ext_resource type="Resource" uid="uid://c11sw6tureea8" path="res://resources/waves/data/wave_1_to_5.tres" id="10_2ml6w"]
+[ext_resource type="Script" uid="uid://8iljmk8wb1tp" path="res://resources/waves/wave_data.gd" id="10_xgbxb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgbxb"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_vmsrg"]
+font_size = 64
 
 [node name="Arena" type="Node2D" unique_id=1131578198 node_paths=PackedStringArray("player")]
 script = ExtResource("1_asdgj")
@@ -34,28 +43,49 @@ script = ExtResource("4_aj7ud")
 position = Vector2(-534, -217)
 flock_push = 30.0
 
-[node name="EnemyChaserSlow2" parent="." unique_id=1214701197 instance=ExtResource("6_jx0ua")]
-position = Vector2(-621, 225)
-flock_push = 30.0
-
-[node name="EnemyChaserSlow3" parent="." unique_id=30628623 instance=ExtResource("6_jx0ua")]
-position = Vector2(-382, 32)
-flock_push = 30.0
-
-[node name="EnemyChaserSlow4" parent="." unique_id=462084255 instance=ExtResource("6_jx0ua")]
-position = Vector2(-246, -323)
-flock_push = 30.0
-
-[node name="EnemyChaserSlow5" parent="." unique_id=2080461848 instance=ExtResource("6_jx0ua")]
-position = Vector2(-805, -38)
-flock_push = 30.0
-
-[node name="EnemyChaserSlow6" parent="." unique_id=1125111268 instance=ExtResource("6_jx0ua")]
-position = Vector2(-293, 326)
-flock_push = 30.0
-
 [node name="EnemyCharger" parent="." unique_id=759150877 instance=ExtResource("7_u52cf")]
 position = Vector2(191, -288)
 
 [node name="EnemyShooter" parent="." unique_id=931837554 instance=ExtResource("8_ii07k")]
 position = Vector2(470, -4)
+
+[node name="Spawner" type="Node2D" parent="." unique_id=1087020206]
+script = ExtResource("9_6w4xk")
+waves_data = Array[ExtResource("10_xgbxb")]([ExtResource("10_2ml6w")])
+
+[node name="SpawnTimer" type="Timer" parent="Spawner" unique_id=1487682583]
+one_shot = true
+
+[node name="WaveTimer" type="Timer" parent="Spawner" unique_id=294030674]
+one_shot = true
+
+[node name="GameUI" type="CanvasLayer" parent="." unique_id=734272696]
+
+[node name="WaveIndexLabel" type="Label" parent="GameUI" unique_id=922273383]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 97.333336
+grow_horizontal = 2
+text = "Wave 1"
+label_settings = SubResource("LabelSettings_xgbxb")
+
+[node name="WaveTimeLabel" type="Label" parent="GameUI" unique_id=1550244057]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.0
+offset_top = 100.0
+offset_right = 34.0
+offset_bottom = 177.33334
+grow_horizontal = 2
+text = "10"
+label_settings = SubResource("LabelSettings_vmsrg")
+
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Spawner/WaveTimer" to="Spawner" method="_on_wave_timer_timeout"]
