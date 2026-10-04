@@ -17,13 +17,6 @@ enum UnitType {
 @export var luck:= 1.0
 @export var block_chance:= 0.0
 @export var gold_drop:= 1
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@export var hp_regen := 0.0
+@export var life_steal := 0.0
+@export var harvesting := 0.0
