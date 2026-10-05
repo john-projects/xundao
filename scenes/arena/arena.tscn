@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bewu54ju6y8r3" path="res://scenes/arena/spawner.gd" id="9_6w4xk"]
 [ext_resource type="Resource" uid="uid://c11sw6tureea8" path="res://resources/waves/data/wave_1_to_5.tres" id="10_2ml6w"]
 [ext_resource type="Script" uid="uid://8iljmk8wb1tp" path="res://resources/waves/wave_data.gd" id="10_xgbxb"]
-[ext_resource type="PackedScene" uid="uid://b2qwaodp84hux" path="res://scenes/ui/stats_container/stats_container.tscn" id="12_vmsrg"]
+[ext_resource type="PackedScene" uid="uid://31jjogyrkn7b" path="res://scenes/ui/upgrade_panel/upgrade_panel.tscn" id="12_vmsrg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xgbxb"]
 font_size = 64
@@ -88,7 +88,9 @@ grow_horizontal = 2
 text = "10"
 label_settings = SubResource("LabelSettings_vmsrg")
 
-[node name="StatsContainer" parent="GameUI" unique_id=2104786807 instance=ExtResource("12_vmsrg")]
+[node name="UpgradePanel" parent="GameUI" unique_id=635233607 instance=ExtResource("12_vmsrg")]
+visible = false
 
+[connection signal="on_wave_completed" from="Spawner" to="." method="_on_spawner_on_wave_completed"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Spawner/WaveTimer" to="Spawner" method="_on_wave_timer_timeout"]

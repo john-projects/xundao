@@ -151,5 +151,9 @@ shape = SubResource("CircleShape2D_3rpdi")
 back_color = Color(0.13725491, 0.019607844, 0.02745098, 1)
 fill_color = Color(1, 0.28235295, 0.45490196, 1)
 
+[node name="HPRegenTimer" type="Timer" parent="." index="11" unique_id=1118164746]
+autostart = true
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="TrailTimer" to="Visuals/Trail" method="_on_trail_timer_timeout"]
+[connection signal="timeout" from="HPRegenTimer" to="." method="_on_hp_regen_timer_timeout"]

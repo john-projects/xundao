@@ -17,6 +17,7 @@
 font_size = 120
 
 [node name="UpgradePanel" type="Panel" unique_id=635233607]
+self_modulate = Color(0.2966023, 0.2966023, 0.2966023, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

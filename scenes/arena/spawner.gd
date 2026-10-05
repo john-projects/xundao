@@ -5,17 +5,14 @@ class_name Spawner
 @export var waves_data: Array[WaveData]
 @export var enemy_collection: Array[UnitStats]
 
+signal on_wave_completed
+
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var wave_timer: Timer = $WaveTimer
 
 var wave_index := 1
 var current_wave_data: WaveData
 var spawned_enemies: Array[Enemy] = []
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	start_wave()
-
 
 func find_wave_data() -> WaveData:
 	for wave in waves_data:
@@ -91,6 +88,7 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_wave_timer_timeout() -> void:
 	Global.game_paused = true
+	on_wave_completed.emit()
 	spawn_timer.stop()
 	clear_enemies()
 	update_enemies_new_wave()
