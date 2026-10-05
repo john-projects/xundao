@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 
 
 func add_weapon(data:ItemWeapon) -> void:
-	var weapon = data.scene.instantiate() as Weapon
+	var weapon := data.scene.instantiate() as Weapon
 	add_child(weapon)
 	weapon.setup_weapon(data)
 	current_weapons.append(weapon)

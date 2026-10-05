@@ -31,6 +31,7 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/Control" unique_id=250431399]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_right = 40.0
@@ -40,6 +41,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="MarginContainer/Control" unique_id=834610386]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 100.0
 offset_top = 10.0
@@ -50,6 +52,7 @@ label_settings = SubResource("LabelSettings_pi0uk")
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="MarginContainer/Control" unique_id=1053333550]
+unique_name_in_owner = true
 modulate = Color(0.827451, 0.9098039, 0.17254902, 1)
 layout_mode = 0
 offset_left = 100.0
@@ -62,5 +65,7 @@ vertical_alignment = 1
 
 [node name="CustomButton" parent="MarginContainer/Control" unique_id=935190723 instance=ExtResource("3_p145h")]
 custom_minimum_size = Vector2(260, 0)
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+offset_left = -130.0
+offset_top = -58.0
+offset_right = 130.0
