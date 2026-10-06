@@ -14,4 +14,5 @@ luck = 5.0
 block_chance = 50.0
 gold_drop = 0
 hp_regen = 3.0
+harvesting = 5.0
 metadata/_custom_type_script = "uid://j6ibt5vlkg3t"
