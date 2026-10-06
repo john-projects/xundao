@@ -53,16 +53,19 @@
 [ext_resource type="Resource" uid="uid://cpaes0h4858rf" path="res://resources/items/upgrade/data/block/upgrade_block_6.tres" id="49_4dvkj"]
 [ext_resource type="Resource" uid="uid://b3n4hay2yskw8" path="res://resources/items/upgrade/data/block/upgrade_block_7.tres" id="50_twlxy"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vr486"]
+bg_color = Color(0.20392157, 0.20392157, 0.20392157, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_3rpdi"]
 font_size = 120
 
 [node name="UpgradePanel" type="Panel" unique_id=635233607]
-self_modulate = Color(0.2966023, 0.2966023, 0.2966023, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vr486")
 script = ExtResource("1_l8hix")
 upgrade_list = Array[ExtResource("2_aghkh")]([ExtResource("10_23ymm"), ExtResource("4_l4p84"), ExtResource("5_625vb"), ExtResource("6_rm2kw"), ExtResource("7_kbsgn"), ExtResource("8_a1b4m"), ExtResource("9_lndip"), ExtResource("10_5ewdg"), ExtResource("11_u36xe"), ExtResource("12_8rmpg"), ExtResource("13_vmsa8"), ExtResource("14_bppm0"), ExtResource("8_h4hr2"), ExtResource("16_lo8g7"), ExtResource("17_mpu6n"), ExtResource("18_0na6y"), ExtResource("19_nipon"), ExtResource("20_5j17u"), ExtResource("7_jevkw"), ExtResource("22_0vvts"), ExtResource("23_bir3b"), ExtResource("24_3eupe"), ExtResource("25_5000v"), ExtResource("26_u74v4"), ExtResource("6_078e8"), ExtResource("28_p6etl"), ExtResource("29_1tim8"), ExtResource("30_eakci"), ExtResource("31_l6ohj"), ExtResource("32_agreq"), ExtResource("5_cehub"), ExtResource("34_7uwbt"), ExtResource("35_e51u4"), ExtResource("36_g7n0k"), ExtResource("37_if5nx"), ExtResource("38_27sma"), ExtResource("4_t2jfx"), ExtResource("40_5x8vq"), ExtResource("41_0mn6i"), ExtResource("42_ibvf6"), ExtResource("43_lfla0"), ExtResource("44_x24kl"), ExtResource("3_evmld"), ExtResource("46_qsvnt"), ExtResource("47_2maa3"), ExtResource("48_u7vwi"), ExtResource("49_4dvkj"), ExtResource("50_twlxy")])
 
