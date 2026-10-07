@@ -14,7 +14,6 @@ func _set_item(value: ItemBase) -> void:
 	var style := Global.get_tier_style(item.item_tier)
 	add_theme_stylebox_override("normal", style)
 
-
 func _on_pressed() -> void:
 	SoundManager.play_sound(SoundManager.Sound.UI)
 	if item.item_type == ItemBase.ItemType.WEAPON:

@@ -22,14 +22,14 @@ SoundManager="*uid://pnwjxb7rtm7r"
 
 [display]
 
-window/size/viewport_width=1960
+window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/stretch/scale=0.7
 
 [gui]
 
+common/show_focus_state_on_pointer_event=2
 theme/custom_font="uid://kfh6ooeul77g"
 
 [input]

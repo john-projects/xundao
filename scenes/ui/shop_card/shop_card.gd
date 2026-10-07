@@ -25,7 +25,7 @@ func _set_shop_item(value: ItemBase) -> void:
 
 func _on_buy_button_pressed() -> void:
 	SoundManager.play_sound(SoundManager.Sound.UI)
-	if Global.equipped_weapons.size() >= 6:
+	if shop_item.item_type == ItemBase.ItemType.WEAPON and Global.equipped_weapons.size() >= 6:
 		return
 	
 	if Global.coins >= shop_item.item_cost:
