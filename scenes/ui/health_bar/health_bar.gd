@@ -23,11 +23,6 @@ func update_bar(value: float, health: float) -> void:
 	progress_bar.value = value
 	health_amount.text = str(health)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_health_component_on_health_changed(current: float, max: float) -> void:
 	var value = current / max
 	update_bar(value, current)

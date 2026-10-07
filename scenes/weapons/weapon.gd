@@ -34,9 +34,10 @@ func _process(delta: float) -> void:
 	if can_use_weapon():
 		use_weapon()
 
-func setup_weapon(data: ItemWeapon) -> void:
-	self.data = data
-	collision.shape.radius = data.stats.max_range
+func setup_weapon(new_data: ItemWeapon) -> void:
+	self.data = new_data
+	collision.shape.radius = new_data.stats.max_range
+	apply_tier_outline()
 
 func use_weapon() -> void:
 	calculate_spread()
@@ -104,6 +105,13 @@ func get_closest_target() -> Node2D:
 func can_use_weapon() -> bool:
 	return cooldown_timer.is_stopped() and closest_target
 	
+func apply_tier_outline() -> void:
+	if data.item_tier == Global.UpgradeTier.COMMON:
+		sprite.material = null
+		return
+	var outline_color := Global.TIER_COLORS[data.item_tier]
+	sprite.material.set_shader_parameter("color", outline_color)
+
 
 func _on_range_area_area_entered(area: Area2D) -> void:
 	targets.push_back(area)

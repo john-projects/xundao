@@ -9,8 +9,8 @@ func _process(delta: float) -> void:
 	position += velocity * delta
 
 
-func set_peojectile(velocity: Vector2, damage:float, critical: bool, knockback: float, unit: Node2D) -> void:
-	self.velocity = velocity
+func set_peojectile(new_velocity: Vector2, damage:float, critical: bool, knockback: float, unit: Node2D) -> void:
+	self.velocity = new_velocity
 	rotation = velocity.angle()
 	if hitbox:
 		hitbox.setup(damage, critical, knockback, unit)

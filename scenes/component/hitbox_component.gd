@@ -13,10 +13,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func enable() -> void:
 	set_deferred("monitoring", true)
 	set_deferred("monitorable", true)
@@ -25,14 +21,14 @@ func disable() -> void:
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 	
-func setup(damage: float, critical: bool, knockback: float, source: Node2D) -> void:
-	self.damage = damage
-	self.critical = critical
-	knockback_power = knockback
-	self.source = source
+func setup(new_damage: float, new_critical: bool, new_knockback: float, new_source: Node2D) -> void:
+	self.damage = new_damage
+	self.critical = new_critical
+	knockback_power = new_knockback
+	self.source = new_source
 	
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HurtboxComponent:
+		SoundManager.play_sound(SoundManager.Sound.ENEMY_HIT)
 		on_hit_hurtbox.emit(area)
-		print(area.owner.name)

@@ -5,20 +5,36 @@ signal on_create_damage_text(unit: Node2D, hitbox: HitboxComponent)
 signal on_create_heal_text(unit: Node2D, heal: float)
 
 signal on_upgrade_selected
+signal on_enemy_died(enemy: Enemy)
 
 const FLASH_MATERIAL = preload("uid://beabn3es4m4m7")
 const FLOATING_TEXT_SCENE = preload("uid://btdihrlsugqm0")
+const COINS_SCENE = preload("uid://bn5dp1yci6xun")
+const ITEM_CARD_SCENE = preload("uid://cywh7kffjjslc")
+const SELECTION_CARD_SCENE = preload("uid://ba1g5c2p6inv6")
+const SPAWN_EFFECT_SCENE = preload("uid://bijtsm4f8ctpl")
 
 const COMMON_STYLE = preload("uid://c383vl8xrt17p")
 const EPIC_STYLE = preload("uid://bvy27iuomo6rx")
 const LEGENDARY_STYLE = preload("uid://v4id7ydojihc")
 const RARE_STYLE = preload("uid://5vcw7m8i2ilu")
 
-
 const UPGRADE_PROBABILITY_CONFIG = {
 	"rare": {"start_wave": 2, "base_multi": 0.06},
 	"epic": {"start_wave": 4, "base_multi": 0.02},
 	"legendary": {"start_wave": 7, "base_multi": 0.0023},
+}
+
+const SHOP_PROBABILITY_CONFIG = {
+	"rare": {"start_wave": 2, "base_multi": 0.10},
+	"epic": {"start_wave": 4, "base_multi": 0.06},
+	"legendary": {"start_wave": 7, "base_multi": 0.01},
+}
+
+const TIER_COLORS: Dictionary[UpgradeTier, Color] = {
+	UpgradeTier.RARE: Color(0.0, 0.557, 0.741),
+	UpgradeTier.EPIC: Color(0.478, 0.251, 0.71),
+	UpgradeTier.LEGENDARY: Color(0.906, 0.212, 0.212),
 }
 
 enum UpgradeTier{
@@ -28,12 +44,25 @@ enum UpgradeTier{
 	LEGENDARY
 }
 
-var coins: int
+var available_players: Dictionary[String, PackedScene] = {
+	"Brawler": preload("uid://dycg0gsn33qsb"),
+	"Bunny": preload("uid://bcy0iisq7ckb7"),
+	"Crazy": preload("uid://6xp7dfopqtpd"),
+	"Knight": preload("uid://pgxw3yef5keu"),
+	"Well Rounded": preload("uid://xrgsu4ju3us0"),
+}
+
+var coins: int = 500
 var player: Player
 var game_paused := false
 
+var main_player_selected: UnitStats
+var main_weapon_selected: ItemWeapon
+
+var equipped_weapons: Array[ItemWeapon]
+
 func get_harvesting_coins() -> void:
-	coins += player.stats.harvesting
+	coins += int(player.stats.harvesting)
 
 func get_chance_success(chance: float) -> bool:
 	var random := randf_range(0, 1.0)
@@ -41,16 +70,23 @@ func get_chance_success(chance: float) -> bool:
 		return true
 	return false
 
+func get_selected_player() -> Player:
+	var player_scene := available_players[main_player_selected.name]
+	var player_instance := player_scene.instantiate()
+	player = player_instance
+	return player
+
+
 func get_tier_style(tier: UpgradeTier) -> StyleBoxFlat:
 	match tier:
+		UpgradeTier.COMMON:
+			return COMMON_STYLE
 		UpgradeTier.RARE:
 			return RARE_STYLE
 		UpgradeTier.EPIC:
 			return EPIC_STYLE
-		UpgradeTier.LEGENDARY:
-			return LEGENDARY_STYLE
 		_:
-			return COMMON_STYLE
+			return LEGENDARY_STYLE
 
 func calculate_tier_probability(current_wave: int, config: Dictionary) -> Array[float]:
 	var common_chance := 0.0

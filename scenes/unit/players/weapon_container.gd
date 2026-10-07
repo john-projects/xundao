@@ -8,15 +8,6 @@ class_name WeaponContainer
 @onready var five: Node2D = $Five
 @onready var six: Node2D = $Six
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func update_weapons_position(weapons: Array[Weapon]) -> void:
 	var count := weapons.size()
 	var reference_node: Node2D

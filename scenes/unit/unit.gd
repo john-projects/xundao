@@ -17,12 +17,6 @@ func set_flash_material() -> void:
 	sprite.material = Global.FLASH_MATERIAL
 	flash_timer.start()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_hurtbox_component_on_damaged(hitbox: HitboxComponent) -> void:
 	if health_component.current_health <= 0:
 		return
