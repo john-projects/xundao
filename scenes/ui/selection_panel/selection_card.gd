@@ -8,6 +8,6 @@ func set_icon(texture: Texture2D) -> void:
 func _on_pressed() -> void:
 	SoundManager.play_sound(SoundManager.Sound.UI)
 
-
 func _on_mouse_entered() -> void:
 	SoundManager.play_sound(SoundManager.Sound.UI)
+	

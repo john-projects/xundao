@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*uid://bdjgulsh2dnnk"
 SoundManager="*uid://pnwjxb7rtm7r"
+TooltipManager="*uid://5yg0vimadyd4"
 
 [display]
 

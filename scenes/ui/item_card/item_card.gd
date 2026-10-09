@@ -2,6 +2,7 @@ extends Button
 class_name ItemCard
 
 signal on_item_card_selected(card: ItemCard)
+signal on_item_card_hover(card: ItemCard)
 
 @export var item: ItemBase: set = _set_item
 @onready var item_icon: TextureRect = $ItemIcon
@@ -18,3 +19,7 @@ func _on_pressed() -> void:
 	SoundManager.play_sound(SoundManager.Sound.UI)
 	if item.item_type == ItemBase.ItemType.WEAPON:
 		on_item_card_selected.emit(self)
+
+func _on_mouse_entered() -> void:
+	SoundManager.play_sound(SoundManager.Sound.UI)
+	on_item_card_hover.emit(self)

@@ -4,6 +4,8 @@ class_name ShopPanel
 signal on_shop_next_wave
 
 const SHOP_CARD_SCENE = preload("uid://ba8e7xllxa8c2")
+# 旧方案（本地 hover card）已弃用，改用 TooltipManager；保留备查
+# const HOVER_ITEM_CARD_SCENE = preload("uid://sojan35we4eq")
 
 @export var shop_items: Array[ItemBase]
 
@@ -13,11 +15,67 @@ const SHOP_CARD_SCENE = preload("uid://ba8e7xllxa8c2")
 @onready var combine_button: Button = %CombineButton
 
 var context_card: ItemCard
+# 旧方案
+# var hover_item_card: HoverItemCard
 
 func _ready() -> void:
 	for child in passives_container.get_children(): child.queue_free()
 	for child in weapons_container.get_children(): child.queue_free()
-	
+
+	# 旧方案：本地创建一张提示卡，自己跟随鼠标
+	# hover_item_card = HOVER_ITEM_CARD_SCENE.instantiate()
+	# add_child(hover_item_card)
+	# hover_item_card.hide()
+
+
+# ──────────────────────────────────────────────────────────────
+#  新方案：悬停提示统一交给 TooltipManager（autoload，独立 CanvasLayer）
+#  卡片在"创建时"各自接好信号，所以不需要事后遍历容器
+# ──────────────────────────────────────────────────────────────
+
+func _on_shop_card_hover_started(card: ShopCard) -> void:
+	if card.shop_item == null:
+		return
+	TooltipManager.show_for_control(card, card.shop_item)
+
+
+func _on_item_card_hover_started(card: ItemCard) -> void:
+	if card.item == null:
+		return
+	TooltipManager.show_for_control(card, card.item)
+
+
+func _on_card_hover_ended() -> void:
+	TooltipManager.hide_tip()
+
+
+# ──────────────────────────────────────────────────────────────
+#  旧方案（本地 hover card，已弃用）——保留备查，不再生效
+# ──────────────────────────────────────────────────────────────
+# func _process(delta: float) -> void:
+# 	if hover_item_card.visible:
+# 			_follow_mouse()
+#
+# func _follow_mouse() -> void:
+# 	var vp := get_viewport().get_visible_rect().size
+# 	var pos := get_local_mouse_position() + Vector2(16, 16)      # 相对 ShopPanel 的局部坐标
+# 	pos.x = min(pos.x, vp.x - hover_item_card.size.x - 8)              # 别跑出屏幕
+# 	pos.y = min(pos.y, vp.y - hover_item_card.size.y - 8)
+# 	hover_item_card.position = pos
+#
+# func _on_shop_card_hover_started(weapon: ItemWeapon) -> void:
+# 	if weapon == null:
+# 		return
+# 	hover_item_card.item = weapon
+# 	hover_item_card.show()
+# 	_follow_mouse()
+#
+# func _on_card_hover_ended() -> void:
+# 	hover_item_card.hide()
+
+
+# ──────────────────────────────────────────────────────────────
+
 func load_shop(current_wave: int) -> void:
 	for child in items_container.get_children(): child.queue_free()
 	
@@ -26,13 +84,25 @@ func load_shop(current_wave: int) -> void:
 	for shop_item: ItemBase in selected_items:
 		var card_instance := SHOP_CARD_SCENE.instantiate() as ShopCard
 		card_instance.on_item_purchased.connect(_on_item_purchased)
+		card_instance.mouse_entered.connect(_on_shop_card_hover_started.bind(card_instance))
+		card_instance.mouse_exited.connect(_on_card_hover_ended)
 		items_container.add_child(card_instance)
 		card_instance.shop_item = shop_item
+	
+	# 旧方案：事后遍历容器去接信号（错的，遍历的是节点不是数组）
+	# for weapon: ItemWeapon in weapons_container:
+	# 	hover_item_card.mouse_entered.connect(_on_shop_card_hover_started.bind(weapon))
+	# 	hover_item_card.mouse_exited.connect(_on_card_hover_ended)
+
 
 func create_item_card() -> ItemCard:
 	var item_card := Global.ITEM_CARD_SCENE.instantiate() as ItemCard
 	item_card.on_item_card_selected.connect(_on_item_card_selected)
+	# ItemCard 全部经过这里创建（购买/合成/初始武器），一处接好就够了
+	item_card.mouse_entered.connect(_on_item_card_hover_started.bind(item_card))
+	item_card.mouse_exited.connect(_on_card_hover_ended)
 	return item_card
+
 
 func create_item_weapon(weapon: ItemWeapon) -> void:
 	var card := create_item_card()
@@ -43,6 +113,7 @@ func create_item_weapon(weapon: ItemWeapon) -> void:
 func _on_next_wave_button_pressed() -> void:
 	SoundManager.play_sound(SoundManager.Sound.UI)
 	on_shop_next_wave.emit()
+
 
 func _on_item_purchased(item: ItemBase) -> void:
 	var item_card := create_item_card()
@@ -59,6 +130,7 @@ func _on_item_purchased(item: ItemBase) -> void:
 		passive.apply_passive()
 		
 	item_card.item = item
+
 
 func _on_item_card_selected(card: ItemCard) -> void:
 	context_card = card
@@ -128,4 +200,3 @@ func _on_sell_button_pressed() -> void:
 	context_card.queue_free()
 	context_card = null
 	Global.coins += coins
-	
